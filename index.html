@@ -1,33 +1,662 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sudha Madhuri Vinnakota | AI Engineer — Agentic AI & LLM Systems</title>
-    <meta name="title" content="Sudha Madhuri Vinnakota | AI Engineer — Agentic AI & LLM Systems" />
-    <meta name="description" content="AI Engineer with 3.6+ years building agentic AI systems, RAG pipelines, MCP servers, and LLM-powered applications with LangChain, LangGraph and AWS." />
-    <meta name="author" content="Sudha Madhuri Vinnakota" />
-    <meta name="keywords" content="AI Engineer, Generative AI, Agentic AI, LangChain, MCP, RAG, LLM, Python, AWS" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sudha-ai-portfolio.vercel.app/" />
-    <meta property="og:title" content="Sudha Madhuri Vinnakota | AI Engineer" />
-    <meta property="og:description" content="AI Engineer with 3.6+ years building agentic AI systems, RAG pipelines, MCP servers, and LLM-powered applications." />
-    <meta property="og:image" content="/og-image.png" />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://sudha-ai-portfolio.vercel.app/" />
-    <meta property="twitter:title" content="Sudha Madhuri Vinnakota | AI Engineer" />
-    <meta property="twitter:description" content="AI Engineer with 3.6+ years building agentic AI systems, RAG pipelines, MCP servers, and LLM-powered applications." />
-    <meta property="twitter:image" content="/og-image.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sudha Madhuri Vinnakota | AI Engineer — Agentic AI &amp; LLM Systems</title>
+<meta name="description" content="AI Engineer specializing in Generative AI, Agentic AI systems, RAG pipelines, MCP servers, and LLM-powered applications with LangChain, LangGraph and AWS." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-950:#060b16; --ink-900:#0b1220; --ink-850:#101a2c; --ink-800:#16223a; --ink-700:#223256;
+    --ink-200:#dbe6f7; --ink-100:#eef3fc; --ink-50:#f7faff;
+    --azure-600:#1d4ed8; --azure-500:#2563eb; --azure-400:#3b82f6; --azure-300:#60a5fa;
+    --sky-400:#38bdf8; --sky-300:#7dd3fc;
+    --font-display:"Space Grotesk","Inter",ui-sans-serif,system-ui,sans-serif;
+    --font-body:"Inter",ui-sans-serif,system-ui,sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,monospace;
+    --bg:var(--ink-50); --fg:var(--ink-900); --card:#ffffff; --card-border:var(--ink-100);
+    --muted:rgba(22,34,58,0.68); --border:var(--ink-200); --surface:var(--ink-50);
+    --accent:var(--azure-500); --accent2:var(--sky-400);
+  }
+  html.dark{
+    --bg:var(--ink-950); --fg:var(--ink-100); --card:var(--ink-900); --card-border:var(--ink-800);
+    --muted:rgba(238,243,252,0.62); --border:var(--ink-700); --surface:var(--ink-900);
+    --accent:var(--sky-400); --accent2:var(--sky-300);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--fg); font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased; transition:background-color .3s ease, color .3s ease;
+  }
+  h1,h2,h3,h4{font-family:var(--font-display); margin:0;}
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:rgba(59,130,246,0.3);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .section-container{max-width:72rem; margin:0 auto; padding:0 1.5rem;}
+  @media(min-width:640px){.section-container{padding:0 2rem;}}
+  @media(min-width:1024px){.section-container{padding:0 2.5rem;}}
+  .text-gradient{background:linear-gradient(90deg, var(--azure-500), var(--sky-400)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  html.dark .text-gradient{background:linear-gradient(90deg, var(--sky-400), var(--sky-300)); -webkit-background-clip:text; background-clip:text;}
+  .card{background:var(--card); border:1px solid var(--card-border); box-shadow:0 1px 2px rgba(15,23,42,0.04);}
+  html.dark .card{box-shadow:none;}
+  .pill{display:inline-flex; align-items:center; gap:.5rem; border-radius:999px; border:1px solid var(--border); background:var(--card); padding:.4rem 1rem; font-size:.75rem; font-weight:500; color:var(--muted);}
+ 
+  /* Nav */
+  header{position:fixed; inset:0 0 auto 0; z-index:50; transition:background-color .3s ease, border-color .3s ease;}
+  header.scrolled{background:rgba(255,255,255,0.8); backdrop-filter:blur(8px); border-bottom:1px solid var(--ink-100);}
+  html.dark header.scrolled{background:rgba(6,11,22,0.8); border-bottom:1px solid var(--ink-800);}
+  nav.navrow{display:flex; align-items:center; justify-content:space-between; height:4rem;}
+  .brand{font-family:var(--font-display); font-size:.9rem; font-weight:600; letter-spacing:-0.01em;}
+  .brand span{color:var(--accent);}
+  .navlinks{display:none; align-items:center; gap:1.75rem;}
+  .navlinks a{font-size:.875rem; font-weight:500; color:var(--muted); transition:color .2s ease;}
+  .navlinks a:hover{color:var(--accent);}
+  .navactions{display:none; align-items:center; gap:.75rem;}
+  @media(min-width:1024px){.navlinks, .navactions{display:flex;} .mobile-only{display:none !important;}}
+  .btn-dark{display:inline-flex; align-items:center; gap:.5rem; border-radius:999px; background:var(--ink-900); color:#fff; padding:.6rem 1.1rem; font-size:.875rem; font-weight:500; transition:background-color .2s ease;}
+  html.dark .btn-dark{background:#fff; color:var(--ink-900);}
+  .btn-dark:hover{background:var(--azure-600);}
+  html.dark .btn-dark:hover{background:var(--sky-300);}
+  .btn-outline{display:inline-flex; align-items:center; gap:.5rem; border-radius:999px; border:1px solid var(--border); padding:.65rem 1.25rem; font-size:.875rem; font-weight:500; transition:.2s ease; color:var(--fg);}
+  .btn-outline:hover{border-color:var(--accent); color:var(--accent);}
+  .icon-btn{display:flex; align-items:center; justify-content:center; width:2.25rem; height:2.25rem; border-radius:999px; border:1px solid var(--border); color:var(--fg); background:transparent; cursor:pointer; transition:.2s ease;}
+  .icon-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .mobile-menu{overflow:hidden; max-height:0; transition:max-height .3s ease; border-top:1px solid var(--ink-100); background:var(--bg);}
+  html.dark .mobile-menu{border-top:1px solid var(--ink-800);}
+  .mobile-menu.open{max-height:24rem;}
+  .mobile-menu-inner{display:flex; flex-direction:column; gap:.25rem; padding:1rem 0;}
+  .mobile-menu-inner a{padding:.65rem .75rem; border-radius:.5rem; font-size:.9rem; font-weight:500;}
+  .mobile-menu-inner a:hover{background:var(--surface);}
+ 
+  /* Hero */
+  #top{position:relative; overflow:hidden; padding:9rem 0 5rem;}
+  @media(min-width:640px){#top{padding:11rem 0 7rem;}}
+  .hero-glow{position:absolute; inset:-10rem 0 auto 0; height:32rem; pointer-events:none; background:radial-gradient(60% 60% at 50% 0%, rgba(37,99,235,0.12), transparent);}
+  html.dark .hero-glow{background:radial-gradient(60% 60% at 50% 0%, rgba(56,189,248,0.14), transparent);}
+  .hero-grid{display:grid; gap:3rem; align-items:center;}
+  @media(min-width:1024px){.hero-grid{grid-template-columns:1.1fr 0.9fr; gap:4rem;}}
+  .hero-fade{animation:fadeUp .6s ease both;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+  h1.hero-name{font-size:2.5rem; font-weight:600; line-height:1.1; letter-spacing:-0.02em;}
+  @media(min-width:640px){h1.hero-name{font-size:3rem;}}
+  @media(min-width:1024px){h1.hero-name{font-size:3.5rem;}}
+  .hero-role{margin-top:1rem; font-size:1.25rem; font-weight:500; color:var(--accent);}
+  @media(min-width:640px){.hero-role{font-size:1.5rem;}}
+  .rotator{position:relative; display:inline-flex; height:1.4em; min-width:13ch; align-items:center; overflow:hidden; vertical-align:bottom;}
+  .rotator span{position:absolute; inset:0; display:flex; align-items:center; font-family:var(--font-mono); color:var(--accent); animation:rotIn .45s ease;}
+  @keyframes rotIn{from{opacity:0; transform:translateY(60%);} to{opacity:1; transform:translateY(0);}}
+  .hero-tagline{margin-top:1.5rem; max-width:38rem; font-size:1rem; line-height:1.7; color:var(--muted);}
+  .hero-actions{margin-top:2rem; display:flex; flex-wrap:wrap; align-items:center; gap:.75rem;}
+  .hero-socials{margin-top:2rem; display:flex; align-items:center; gap:1.1rem;}
+  .float{animation:float 6s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);}}
+ 
+  /* section heading */
+  .eyebrow{display:inline-block; font-size:.75rem; font-weight:600; letter-spacing:.06em; color:var(--accent);}
+  .section-title{margin-top:.6rem; font-size:1.75rem; font-weight:600; letter-spacing:-0.01em; max-width:38rem;}
+  @media(min-width:640px){.section-title{font-size:2.1rem;}}
+  .section-desc{margin-top:.85rem; max-width:38rem; color:var(--muted); line-height:1.65;}
+  section{padding:5rem 0;}
+  @media(min-width:640px){section{padding:7rem 0;}}
+  .alt-bg{background:var(--card);}
+ 
+  /* about */
+  .about-grid{display:grid; gap:3rem; margin-top:3rem;}
+  @media(min-width:1024px){.about-grid{grid-template-columns:1.3fr 1fr;}}
+  .about-body p{font-size:1rem; line-height:1.75; color:var(--muted);}
+  .about-tags{margin-top:2rem; display:flex; flex-wrap:wrap; gap:.75rem;}
+  .tag-accent{display:inline-flex; align-items:center; gap:.5rem; border-radius:999px; background:rgba(37,99,235,0.1); padding:.5rem 1rem; font-size:.875rem; font-weight:500; color:var(--azure-600);}
+  html.dark .tag-accent{background:rgba(56,189,248,0.1); color:var(--sky-300);}
+  .tag-muted{display:inline-flex; align-items:center; gap:.5rem; border-radius:999px; background:var(--ink-100); padding:.5rem 1rem; font-size:.875rem; font-weight:500; color:var(--muted);}
+  html.dark .tag-muted{background:var(--ink-800);}
+  .highlight-grid{display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-content:start;}
+  .highlight-card{border-radius:1rem; padding:1.15rem;}
+  .highlight-card p:first-child{font-size:.9rem; font-weight:600; line-height:1.3;}
+  .highlight-card p:last-child{margin-top:.35rem; font-size:.75rem; color:var(--muted);}
+ 
+  /* skills */
+  .skill-grid{margin-top:3rem; display:grid; grid-template-columns:1fr; gap:1.25rem;}
+  @media(min-width:640px){.skill-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1024px){.skill-grid{grid-template-columns:repeat(4,1fr);}}
+  .skill-card{border-radius:1rem; padding:1.4rem; transition:border-color .2s ease, transform .2s ease;}
+  .skill-card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .skill-icon{display:flex; align-items:center; justify-content:center; width:2.4rem; height:2.4rem; border-radius:.7rem; background:rgba(37,99,235,0.1); color:var(--azure-600); margin-bottom:.9rem;}
+  html.dark .skill-icon{background:rgba(56,189,248,0.1); color:var(--sky-300);}
+  .skill-card h3{font-size:.95rem; font-weight:600;}
+  .skill-tags{margin-top:.75rem; display:flex; flex-wrap:wrap; gap:.4rem;}
+  .skill-tags span{font-size:.72rem; padding:.25rem .6rem; border-radius:999px; background:var(--surface); color:var(--muted); border:1px solid var(--border);}
+ 
+  /* experience */
+  .exp-list{margin-top:3rem; max-width:44rem; display:flex; flex-direction:column; gap:2.5rem;}
+  .exp-item{position:relative; padding-left:1.75rem; border-left:2px solid var(--border);}
+  .exp-item::before{content:''; position:absolute; left:-7px; top:2px; width:12px; height:12px; border-radius:999px; background:var(--accent);}
+  .exp-role{font-size:1.05rem; font-weight:600;}
+  .exp-meta{margin-top:.2rem; font-size:.85rem; color:var(--muted); display:flex; flex-wrap:wrap; gap:.4rem 1rem;}
+  .exp-meta b{color:var(--accent); font-weight:600;}
+  .exp-points{margin-top:1rem; display:flex; flex-direction:column; gap:.55rem;}
+  .exp-points li{list-style:none; position:relative; padding-left:1.1rem; font-size:.9rem; line-height:1.6; color:var(--muted);}
+  .exp-points li::before{content:'—'; position:absolute; left:0; color:var(--accent);}
+ 
+  /* projects */
+  .proj-grid{margin-top:3rem; display:grid; grid-template-columns:1fr; gap:1.5rem;}
+  @media(min-width:640px){.proj-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1024px){.proj-grid{grid-template-columns:repeat(3,1fr);}}
+  .proj-card{border-radius:1rem; padding:1.5rem; display:flex; flex-direction:column; transition:border-color .2s ease, transform .2s ease;}
+  .proj-card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .proj-card h3{font-size:1.02rem; font-weight:600;}
+  .proj-card p.desc{margin-top:.6rem; font-size:.85rem; line-height:1.6; color:var(--muted); flex-grow:0;}
+  .proj-tech{margin-top:.9rem; display:flex; flex-wrap:wrap; gap:.4rem;}
+  .proj-tech span{font-size:.7rem; padding:.22rem .55rem; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--muted); font-family:var(--font-mono);}
+  .proj-features{margin-top:.9rem; display:flex; flex-direction:column; gap:.4rem;}
+  .proj-features li{list-style:none; position:relative; padding-left:1rem; font-size:.8rem; line-height:1.55; color:var(--muted);}
+  .proj-features li::before{content:'•'; position:absolute; left:0; color:var(--accent);}
+  .proj-link{margin-top:1.1rem; display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; font-weight:600; color:var(--accent);}
+ 
+  /* education */
+  .edu-grid{margin-top:3rem; max-width:44rem; display:grid; gap:1.25rem;}
+  .edu-card{border-radius:1rem; padding:1.35rem 1.5rem; display:flex; gap:1rem; align-items:flex-start;}
+  .edu-icon{flex-shrink:0; width:2.4rem; height:2.4rem; border-radius:.7rem; background:rgba(37,99,235,0.1); color:var(--azure-600); display:flex; align-items:center; justify-content:center;}
+  html.dark .edu-icon{background:rgba(56,189,248,0.1); color:var(--sky-300);}
+  .edu-card h3{font-size:.95rem; font-weight:600; line-height:1.4;}
+  .edu-card p{margin-top:.3rem; font-size:.8rem; color:var(--muted);}
+ 
+  /* certifications */
+  .cert-grid{margin-top:3rem; display:grid; grid-template-columns:1fr; gap:1.25rem;}
+  @media(min-width:640px){.cert-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1024px){.cert-grid{grid-template-columns:repeat(3,1fr);}}
+  .cert-card{border-radius:1rem; padding:1.3rem; border-style:dashed;}
+  .cert-card h3{font-size:.88rem; font-weight:600; color:var(--muted);}
+  .cert-card p{margin-top:.3rem; font-size:.78rem; color:var(--muted); opacity:.7;}
+ 
+  /* contact */
+  .contact-grid{margin-top:3rem; display:grid; gap:2.5rem;}
+  @media(min-width:1024px){.contact-grid{grid-template-columns:0.8fr 1.2fr;}}
+  .contact-links{display:flex; flex-direction:column; gap:1rem;}
+  .contact-link{border-radius:.85rem; padding:1rem; display:flex; align-items:center; gap:.85rem; font-size:.9rem; color:var(--muted); transition:.2s ease;}
+  .contact-link:hover{border-color:var(--accent); color:var(--accent);}
+  .contact-link .ico{flex-shrink:0; width:2.25rem; height:2.25rem; border-radius:.6rem; background:rgba(37,99,235,0.1); color:var(--azure-600); display:flex; align-items:center; justify-content:center;}
+  html.dark .contact-link .ico{background:rgba(56,189,248,0.1); color:var(--sky-300);}
+  .contact-form{display:flex; flex-direction:column; gap:1rem;}
+  .contact-form input, .contact-form textarea{width:100%; border-radius:.65rem; border:1px solid var(--border); background:var(--card); color:var(--fg); padding:.75rem .9rem; font-family:var(--font-body); font-size:.9rem;}
+  .contact-form input:focus, .contact-form textarea:focus{outline:none; border-color:var(--accent);}
+  .contact-form textarea{resize:vertical; min-height:9rem;}
+  .contact-form button{align-self:flex-start;}
+ 
+  /* footer */
+  footer{border-top:1px solid var(--border); padding:2.5rem 0;}
+  .footer-row{display:flex; flex-direction:column; gap:1rem; align-items:center; justify-content:space-between; font-size:.875rem; color:var(--muted); text-align:center;}
+  @media(min-width:640px){.footer-row{flex-direction:row; text-align:left;}}
+  .footer-socials{display:flex; align-items:center; gap:1rem;}
+  .footer-socials a:hover{color:var(--accent);}
+ 
+  .badge-loc{display:inline-flex; align-items:center; gap:.5rem; margin-bottom:1.25rem;}
+</style>
+</head>
+<body>
+ 
+<header id="siteHeader">
+  <nav class="navrow section-container">
+    <a href="#top" class="brand">Sudha<span>.</span>ai</a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="navactions">
+      <button class="icon-btn" id="themeToggleDesktop" aria-label="Toggle theme"></button>
+      <a class="btn-dark" href="https://github.com/sudha-madhuribolloju" target="_blank" rel="noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C3 2.5 2 2.5 2 2.5c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 1 9.5c0 3.5 3 5.5 6 5.5a4.8 4.8 0 0 0-1 3.5V22"/></svg>
+        Resume
+      </a>
+    </div>
+    <div class="navactions mobile-only" style="display:flex;">
+      <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme"></button>
+      <button class="icon-btn" id="menuBtn" aria-label="Toggle menu"></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="section-container mobile-menu-inner">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</header>
+ 
+<section id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="section-container hero-grid">
+    <div>
+      <p class="pill badge-loc hero-fade" style="animation-delay:.0s">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Hyderabad, Telangana, India
+      </p>
+      <h1 class="hero-name hero-fade" style="animation-delay:.05s">Sudha Madhuri Vinnakota</h1>
+      <p class="hero-role hero-fade" style="animation-delay:.12s">
+        AI Engineer — <span class="rotator" id="rotator"></span>
+      </p>
+      <p class="hero-tagline hero-fade" style="animation-delay:.18s">
+        Building agentic AI systems, RAG pipelines and MCP-connected tools that turn LLMs into production software. Currently shipping Generative AI applications at AgentOpsLabs, after three years automating business processes as an RPA developer.
+      </p>
+      <div class="hero-actions hero-fade" style="animation-delay:.25s">
+        <a class="btn-dark" href="./Sudha_Madhuri_Vinnakota_Resume.pdf" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+        <a class="btn-outline" href="#contact">
+          Contact Me
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="hero-socials hero-fade" style="animation-delay:.32s">
+        <a class="icon-btn" href="https://www.linkedin.com/in/sudha-ai" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a class="icon-btn" href="https://github.com/sudha-madhuribolloju" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C3 2.5 2 2.5 2 2.5c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 1 9.5c0 3.5 3 5.5 6 5.5a4.8 4.8 0 0 0-1 3.5V22"/></svg>
+        </a>
+        <a class="icon-btn" href="mailto:sudhamadhurivinnakota@gmail.com" aria-label="Email">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="float" style="animation-delay:.2s">
+      <svg viewBox="0 0 420 360" width="100%" height="auto" aria-hidden="true">
+        <defs>
+          <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--azure-400)"/>
+            <stop offset="100%" stop-color="var(--sky-400)"/>
+          </linearGradient>
+        </defs>
+        <g fill="none" stroke="url(#lineGrad)" stroke-width="1.5" opacity="0.55">
+          <line x1="210" y1="70" x2="90" y2="150"/>
+          <line x1="210" y1="70" x2="330" y2="150"/>
+          <line x1="210" y1="70" x2="210" y2="190"/>
+          <line x1="90" y1="150" x2="60" y2="270"/>
+          <line x1="90" y1="150" x2="170" y2="260"/>
+          <line x1="330" y1="150" x2="360" y2="270"/>
+          <line x1="330" y1="150" x2="250" y2="260"/>
+          <line x1="210" y1="190" x2="170" y2="260"/>
+          <line x1="210" y1="190" x2="250" y2="260"/>
+        </g>
+        <g>
+          <circle cx="210" cy="70" r="15" fill="var(--card)" stroke="var(--azure-500)" stroke-width="2.5"/>
+          <circle cx="210" cy="70" r="5" fill="var(--azure-500)"><animate attributeName="opacity" values="1;0.4;1" dur="2.4s" repeatCount="indefinite"/></circle>
+ 
+          <circle cx="90" cy="150" r="12" fill="var(--card)" stroke="var(--sky-400)" stroke-width="2.5"/>
+          <circle cx="90" cy="150" r="4" fill="var(--sky-400)"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.4s" repeatCount="indefinite"/></circle>
+ 
+          <circle cx="330" cy="150" r="12" fill="var(--card)" stroke="var(--sky-400)" stroke-width="2.5"/>
+          <circle cx="330" cy="150" r="4" fill="var(--sky-400)"><animate attributeName="opacity" values="1;0.4;1" dur="3s" repeatCount="indefinite"/></circle>
+ 
+          <circle cx="210" cy="190" r="12" fill="var(--card)" stroke="var(--azure-400)" stroke-width="2.5"/>
+          <circle cx="210" cy="190" r="4" fill="var(--azure-400)"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.1s" repeatCount="indefinite"/></circle>
+ 
+          <circle cx="60" cy="270" r="9" fill="var(--card)" stroke="var(--ink-700)" stroke-width="2"/>
+          <circle cx="170" cy="260" r="9" fill="var(--card)" stroke="var(--ink-700)" stroke-width="2"/>
+          <circle cx="250" cy="260" r="9" fill="var(--card)" stroke="var(--ink-700)" stroke-width="2"/>
+          <circle cx="360" cy="270" r="9" fill="var(--card)" stroke="var(--ink-700)" stroke-width="2"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+ 
+<section id="about">
+  <div class="section-container">
+    <p class="eyebrow">About Me</p>
+    <h2 class="section-title">Shipping AI that holds up in production</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>AI Engineer with hands-on experience designing and shipping Generative AI applications in Python. I build LLM-powered agents, multi-agent workflows and RAG pipelines with LangChain, LangGraph, CrewAI and the Model Context Protocol (MCP) — connecting language models to real APIs, data and business processes. Alongside the AI layer, I build and ship the REST APIs and cloud infrastructure around it: FastAPI services productionized on AWS through Docker and CI/CD. Before moving into AI, I spent over three years as a UiPath RPA developer automating business processes end to end, which is where my focus on turning manual work into reliable, deployable software started. I care most about turning promising AI demos into dependable systems that solve real problems in production.</p>
+        <div class="about-tags">
+          <span class="tag-accent">6+ months in Generative AI</span>
+          <span class="tag-muted">Hyderabad, India</span>
+        </div>
+      </div>
+      <div class="highlight-grid">
+        <div class="highlight-card card"><p>6+ months</p><p>AI Engineering experience</p></div>
+        <div class="highlight-card card"><p>3+ years</p><p>Prior RPA / automation (UiPath)</p></div>
+        <div class="highlight-card card"><p>LangChain · LangGraph · CrewAI</p><p>Agent frameworks shipped</p></div>
+        <div class="highlight-card card"><p>MCP</p><p>AI protocol adopted early</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section id="skills" class="alt-bg">
+  <div class="section-container">
+    <p class="eyebrow">Skills</p>
+    <h2 class="section-title">Tools I use to build agentic AI systems</h2>
+    <p class="section-desc">From prompt-level engineering down to the cloud infrastructure and automation that keeps it running.</p>
+    <div class="skill-grid" id="skillGrid"></div>
+  </div>
+</section>
+ 
+<section id="experience">
+  <div class="section-container">
+    <p class="eyebrow">Experience</p>
+    <h2 class="section-title">Where I've built these systems</h2>
+    <p class="section-desc">From RPA automation to Generative AI engineering — nearly four years turning business problems into deployable software.</p>
+    <div class="exp-list" id="expList"></div>
+  </div>
+</section>
+ 
+<section id="projects" class="alt-bg">
+  <div class="section-container">
+    <p class="eyebrow">Projects</p>
+    <h2 class="section-title">Selected builds</h2>
+    <p class="section-desc">Representative AI agent, RAG, MCP and automation projects drawn from my day-to-day work and personal builds.</p>
+    <div class="proj-grid" id="projGrid"></div>
+  </div>
+</section>
+ 
+<section id="education">
+  <div class="section-container">
+    <p class="eyebrow">Education</p>
+    <h2 class="section-title">Academic background</h2>
+    <div class="edu-grid" id="eduGrid"></div>
+  </div>
+</section>
+ 
+<section id="certifications" class="alt-bg">
+  <div class="section-container">
+    <p class="eyebrow">Certifications</p>
+    <h2 class="section-title">Currently building this out</h2>
+    <p class="section-desc">Reserved space for upcoming certifications — swap these placeholders in as credentials are earned.</p>
+    <div class="cert-grid" id="certGrid"></div>
+  </div>
+</section>
+ 
+<section id="contact">
+  <div class="section-container">
+    <p class="eyebrow">Contact</p>
+    <h2 class="section-title">Let's build something together</h2>
+    <p class="section-desc">Open to AI engineering roles, freelance builds, and collaborations on agentic AI systems.</p>
+    <div class="contact-grid">
+      <div>
+        <p class="pill badge-loc">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Hyderabad, Telangana, India
+        </p>
+        <div class="contact-links">
+          <a class="contact-link card" href="mailto:sudhamadhurivinnakota@gmail.com">
+            <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
+            sudhamadhurivinnakota@gmail.com
+          </a>
+          <a class="contact-link card" href="tel:+916300962337">
+            <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
+            +91 63009 62337
+          </a>
+          <a class="contact-link card" href="https://www.linkedin.com/in/sudha-ai" target="_blank" rel="noreferrer">
+            <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+            linkedin.com/in/sudha-ai
+          </a>
+          <a class="contact-link card" href="https://github.com/sudha-madhuribolloju" target="_blank" rel="noreferrer">
+            <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C3 2.5 2 2.5 2 2.5c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 1 9.5c0 3.5 3 5.5 6 5.5a4.8 4.8 0 0 0-1 3.5V22"/></svg></span>
+            github.com/sudha-madhuribolloju
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault(); this.reset(); var b=this.querySelector('button'); var t=b.textContent; b.textContent='Message noted \u2713'; setTimeout(function(){ b.textContent=t; },2200); return false;">
+        <input type="text" placeholder="Your name" required />
+        <input type="email" placeholder="Your email" required />
+        <textarea placeholder="Your message" required></textarea>
+        <button type="submit" class="btn-dark">
+          Send Message
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div class="section-container footer-row">
+    <p>© <span id="yr"></span> Sudha Madhuri Vinnakota. Built with HTML &amp; CSS.</p>
+    <div class="footer-socials">
+      <a href="mailto:sudhamadhurivinnakota@gmail.com" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></a>
+      <a href="https://www.linkedin.com/in/sudha-ai" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      <a href="https://github.com/sudha-madhuribolloju" target="_blank" rel="noreferrer" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C3 2.5 2 2.5 2 2.5c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 1 9.5c0 3.5 3 5.5 6 5.5a4.8 4.8 0 0 0-1 3.5V22"/></svg></a>
+    </div>
+  </div>
+</footer>
+ 
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+ 
+/* Theme toggle */
+function sunIcon(){return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';}
+function moonIcon(){return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>';}
+var root = document.documentElement;
+function safeGet(key){ try { return localStorage.getItem(key); } catch (e) { return null; } }
+function safeSet(key, val){ try { localStorage.setItem(key, val); } catch (e) { /* ignore */ } }
+function applyTheme(t){
+  root.classList.toggle('dark', t === 'dark');
+  var icon = t === 'dark' ? sunIcon() : moonIcon();
+  document.getElementById('themeToggleDesktop').innerHTML = icon;
+  document.getElementById('themeToggleMobile').innerHTML = icon;
+  safeSet('theme', t);
+}
+var theme = safeGet('theme') || 'light';
+applyTheme(theme);
+function toggleTheme(){ theme = theme === 'dark' ? 'light' : 'dark'; applyTheme(theme); }
+document.getElementById('themeToggleDesktop').addEventListener('click', toggleTheme);
+document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+ 
+/* Mobile menu */
+var menuBtn = document.getElementById('menuBtn');
+var mobileMenu = document.getElementById('mobileMenu');
+function menuIcon(open){
+  return open
+    ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+    : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+}
+menuBtn.innerHTML = menuIcon(false);
+menuBtn.addEventListener('click', function(){
+  var open = mobileMenu.classList.toggle('open');
+  menuBtn.innerHTML = menuIcon(open);
+});
+Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function(a){
+  a.addEventListener('click', function(){
+    mobileMenu.classList.remove('open');
+    menuBtn.innerHTML = menuIcon(false);
+  });
+});
+ 
+/* Scrolled header */
+var header = document.getElementById('siteHeader');
+function onScroll(){ header.classList.toggle('scrolled', window.scrollY > 8); }
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+ 
+/* Rotating role words */
+var words = ['RAG Pipelines', 'MCP Servers', 'Multi-Agent Systems', 'LLM Workflows', 'Agentic AI'];
+var wIndex = 0;
+var rotator = document.getElementById('rotator');
+function renderWord(){
+  rotator.innerHTML = '<span>' + words[wIndex] + '</span>';
+}
+renderWord();
+setInterval(function(){ wIndex = (wIndex + 1) % words.length; renderWord(); }, 2200);
+ 
+/* ---- Content data (from resume) ---- */
+var icons = {
+  code: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  sparkles: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8L4 11l6.1 2.2L12 19l1.9-5.8L20 11l-6.1-2.2L12 3Z"/></svg>',
+  workflow: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="5" rx="1"/><rect x="13" y="16" width="8" height="5" rx="1"/><path d="M7 8v3a2 2 0 0 0 2 2h6a2 2 0 0 1 2 2v1"/></svg>',
+  tools: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg>',
+  plug: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v3"/><path d="M2 15v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3"/><line x1="6" y1="9" x2="6" y2="15"/><line x1="12" y1="9" x2="12" y2="15"/><line x1="18" y1="9" x2="18" y2="15"/></svg>',
+  cloud: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.4-2A5 5 0 0 0 6.5 19h11Z"/></svg>',
+  container: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 6.96 12 12.01l8.7-5.05"/><path d="M12 22.08V12"/></svg>',
+  database: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>',
+  terminal: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+  briefcase: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
+  grad: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>',
+  award: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>',
+  github: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C3 2.5 2 2.5 2 2.5c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 1 9.5c0 3.5 3 5.5 6 5.5a4.8 4.8 0 0 0-1 3.5V22"/></svg>',
+};
+ 
+var skillCategories = [
+  { title:'Programming', icon:'code', skills:['Python'] },
+  { title:'Generative AI', icon:'sparkles', skills:['LLMs','OpenAI','Anthropic Claude','Gemini','Prompt Engineering','RAG','AI Agents','Agentic AI'] },
+  { title:'Frameworks', icon:'workflow', skills:['LangChain','LangGraph','CrewAI','FastAPI','Flask'] },
+  { title:'AI Coding & App-Building Tools', icon:'tools', skills:['Cursor','GitHub Copilot','Claude','Lovable','Antigravity','Google AI Studio','Firebase Studio'] },
+  { title:'AI Protocols', icon:'plug', skills:['Model Context Protocol (MCP)','Tool Calling','API Integration'] },
+  { title:'Cloud', icon:'cloud', skills:['AWS EC2','S3','IAM','VPC','RDS','CloudWatch'] },
+  { title:'DevOps & Containers', icon:'container', skills:['Docker','Docker Hub','Git','GitHub','CI/CD','GitHub Actions','Kubernetes'] },
+  { title:'Databases', icon:'database', skills:['PostgreSQL','Supabase'] },
+  { title:'Automation', icon:'workflow', skills:['n8n','Webhooks','Workflow Automation'] },
+  { title:'Tools', icon:'terminal', skills:['VS Code','Jupyter Notebook','Postman'] }
+];
+ 
+var experience = [
+  {
+    company:'AgentOpsLabs', role:'AI Engineer', duration:'April 2026 — Present',
+    points:[
+      'Built LLM-powered business applications using Python, LangChain, CrewAI and LangGraph, transforming manual business processes into intelligent, automated workflows.',
+      'Designed AI agent and multi-agent systems using CrewAI and LangGraph, enabling agents to reason through tasks, collaborate, maintain workflow state and execute tools autonomously.',
+      'Developed MCP servers and tool integrations to connect AI agents with APIs, databases, external services and enterprise systems, extending LLM capabilities beyond text generation.',
+      'Implemented RAG-based AI solutions using semantic retrieval and external knowledge sources for more relevant, context-aware LLM responses.',
+      'Orchestrated complex AI workflows combining LLM reasoning, retrieval, memory, tool calling and workflow control into end-to-end solutions.',
+      'Developed Python-based AI backend services and REST APIs, integrating LLM applications with databases, third-party services and enterprise platforms.',
+      'Productionized AI applications on AWS using EC2, S3, Lambda, GitHub and CI/CD pipelines for scalable, reliable deployments.',
+      'Automated business processes using n8n and no-code/low-code tools, connecting systems through event-driven workflows.',
+      'Leveraged AI-assisted development tools including Antigravity to accelerate development, experimentation, debugging and delivery.',
+      'Worked closely with cross-functional teams to convert business requirements into practical, deployable AI solutions.'
+    ]
+  },
+  {
+    company:'Cybermatics Systems', role:'UiPath Developer', duration:'June 2021 — Dec 2024',
+    points:[
+      'Developed 10 bots across various projects, automating processes hosted on web and mainframe applications using the RE-Framework.',
+      'Developed objects and workflows per client requirements, and prepared PDD/SDD documentation.',
+      'Gathered requirements directly with clients and translated them into deployable automation workflows.',
+      'Used UiPath Orchestrator for queue and asset management, and scheduled triggers for deployed bots.',
+      'Monitored and maintained deployed bots, automating web, Windows, Excel, Word and PDF-based applications.'
+    ]
+  }
+];
+ 
+var projects = [
+  {
+    name:'Nexora AI Classroom Agent', github:'https://github.com/sudha-madhuribolloju',
+    description:'AI-powered educational platform integrating LLMs, RAG, NLP, speech recognition and learning analytics to support personalized teaching and learning.',
+    tech:['Python','FastAPI','PostgreSQL','pgvector','LLMs','RAG','NLP','WebSockets'],
+    features:['AI Tutor, RAG-based PDF chat, lecture transcription, AI summarization and automated quiz generation','Personalized learning recommendations and student performance analytics','JWT authentication and role-based access control','End-to-end workflow: Lecture → Speech-to-Text → NLP → LLM → RAG → Quiz → Analytics → Insights']
+  },
+  {
+    name:'AI Linux Automation Agent', github:'https://github.com/sudha-madhuribolloju',
+    description:'AI-powered Linux automation agent that converts natural-language requests into Linux commands and executes them through a Shell Tool.',
+    tech:['Python','Gemini','LangChain','Linux','Shell','AWS EC2'],
+    features:['Integrated Google Gemini with LangChain to build the AI agent','Shell Tool for automated command execution and system info retrieval','Deployed and tested on an AWS EC2 Linux environment','Workflow: User Request → Gemini → AI Agent → Shell Tool → Linux Command → Response']
+  },
+  {
+    name:'Multi-Agent Research & Observability System', github:'https://github.com/sudha-madhuribolloju',
+    description:'A CrewAI multi-agent research workflow with Researcher and Reporting agents, using Pydantic for structured output and Langfuse for LLM observability.',
+    tech:['CrewAI','Pydantic','Langfuse'],
+    features:['Researcher and Reporting agent roles collaborating on tasks','Structured JSON output validated with Pydantic','Latency monitoring, token tracking and agent context tracing via Langfuse']
+  },
+  {
+    name:'Smart Q&A Bot', github:'https://github.com/sudha-madhuribolloju',
+    description:'A resilient LangChain Q&A bot that delivers validated, structured responses with graceful error handling and parallel batch processing.',
+    tech:['LangChain','Pydantic'],
+    features:['Structured, validated responses via Pydantic schemas','Graceful error handling for malformed inputs','Parallel batch processing for higher throughput']
+  },
+  {
+    name:'Weather Assistant with MCP', github:'https://github.com/sudha-madhuribolloju',
+    description:'A custom Model Context Protocol (MCP) server built with FastMCP that lets AI assistants access real-time weather data from the National Weather Service (NWS) API.',
+    tech:['MCP','FastMCP','Python','Claude Desktop','Cursor'],
+    features:['Custom MCP server exposing NWS weather data as agent tools','Compatible with Claude Desktop and Cursor as MCP clients','Real-time weather retrieval through a standard tool-calling interface']
+  },
+  {
+    name:'Data Analysis & Transformation Pipeline', github:'https://github.com/sudha-madhuribolloju',
+    description:'A Pandas-based data analysis pipeline covering cleaning, type conversion, filtering, sorting, aggregation and multi-format export.',
+    tech:['Pandas','Jupyter Notebook','Python'],
+    features:['Data cleaning, type conversion and Boolean filtering','Sorting, ranking and aggregation','Time-series resampling and multi-format data export']
+  }
+];
+ 
+var education = [
+  { degree:'B.Tech', institution:'Godavari Global University', affiliation:'Affiliated to JNTU Kakinada', years:'2003 — 2007', detail:'GPA: 64%' },
+  { degree:'Intermediate (Class XII)', institution:'Siddhartha College', years:'2001 — 2003', detail:'GPA: 80%' }
+];
+ 
+var certifications = [
+  { title:'Add your certification', issuer:'e.g. AWS Certified AI Practitioner' },
+  { title:'Add your certification', issuer:'e.g. LangChain / LangGraph Certification' },
+  { title:'Add your certification', issuer:'e.g. Generative AI with LLMs' }
+];
+ 
+/* Render skills */
+var skillGrid = document.getElementById('skillGrid');
+skillGrid.innerHTML = skillCategories.map(function(cat){
+  var tags = cat.skills.map(function(s){ return '<span>' + s + '</span>'; }).join('');
+  return '<div class="skill-card card">' +
+    '<div class="skill-icon">' + (icons[cat.icon] || icons.code) + '</div>' +
+    '<h3>' + cat.title + '</h3>' +
+    '<div class="skill-tags">' + tags + '</div>' +
+  '</div>';
+}).join('');
+ 
+/* Render experience */
+var expList = document.getElementById('expList');
+expList.innerHTML = experience.map(function(item){
+  var points = item.points.map(function(p){ return '<li>' + p + '</li>'; }).join('');
+  return '<div class="exp-item">' +
+    '<p class="exp-role">' + item.role + ' — <b>' + item.company + '</b></p>' +
+    '<div class="exp-meta"><span>' + item.duration + '</span></div>' +
+    '<ul class="exp-points">' + points + '</ul>' +
+  '</div>';
+}).join('');
+ 
+/* Render projects */
+var projGrid = document.getElementById('projGrid');
+projGrid.innerHTML = projects.map(function(p){
+  var tech = p.tech.map(function(t){ return '<span>' + t + '</span>'; }).join('');
+  var features = p.features.map(function(f){ return '<li>' + f + '</li>'; }).join('');
+  return '<div class="proj-card card">' +
+    '<h3>' + p.name + '</h3>' +
+    '<p class="desc">' + p.description + '</p>' +
+    '<div class="proj-tech">' + tech + '</div>' +
+    '<ul class="proj-features">' + features + '</ul>' +
+    '<a class="proj-link" href="' + p.github + '" target="_blank" rel="noreferrer">' + icons.github + ' View on GitHub</a>' +
+  '</div>';
+}).join('');
+ 
+/* Render education */
+var eduGrid = document.getElementById('eduGrid');
+eduGrid.innerHTML = education.map(function(e){
+  return '<div class="edu-card card">' +
+    '<div class="edu-icon">' + icons.grad + '</div>' +
+    '<div>' +
+      '<h3>' + e.degree + (e.institution ? ' — ' + e.institution : '') + '</h3>' +
+      '<p>' + (e.affiliation ? e.affiliation + ' · ' : '') + e.years + ' · ' + e.detail + '</p>' +
+    '</div>' +
+  '</div>';
+}).join('');
+ 
+/* Render certifications */
+var certGrid = document.getElementById('certGrid');
+certGrid.innerHTML = certifications.map(function(c){
+  return '<div class="cert-card card">' +
+    '<h3>' + c.title + '</h3>' +
+    '<p>' + c.issuer + '</p>' +
+  '</div>';
+}).join('');
+</script>
+</body>
 </html>
